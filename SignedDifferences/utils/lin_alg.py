@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
-
 """Auxiliary linear algebra functions."""
+
 import numpy as np
 
 def half_vectorize(matrix : np.ndarray, triangular : str = 'upper', diag : bool = False) -> np.array:

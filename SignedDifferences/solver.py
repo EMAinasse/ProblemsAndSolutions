@@ -3,27 +3,17 @@ from scipy.optimize import nnls
 from sklearn.linear_model import LinearRegression, Lasso, LassoCV, LassoLarsCV
 import cvxpy as cp
 from random import random
+from utils.lin_alg import half_vectorize, diff_matrix
 from dataclasses import dataclass
 
 @dataclass
-class Solution:
+class RegSolution:
     sol: np.ndarray
     res_norm: float
 
 class SignedDifferencesOLS:
-    def __init__(self, library = 'CVXPY'):
+    def __init__(self, library = 'cvxpy'):
         self.library = library
-
-    def generate_data(self, n, positive = True, noise = False):
-        
-        X = np.random.random(n) if positive else np.random.randn(n)
-        
-        D = diff_matrix(X) + 1e-5 * np.random.normal(n) if noise else diff_matrix(X)
-        
-        return {
-            'nums' : X,
-            'diff_matrix' : D
-        }
     
     def construct_design_matrix(self, n):
         A = np.zeros((n * (n-1) // 2, n))
@@ -46,7 +36,7 @@ class SignedDifferencesOLS:
 
         A = SignedDifferencesOLS.construct_design_matrix(self, n)
         
-        if self.library == 'CVXPY':
+        if self.library == 'cvxpy':
             x = cp.Variable(n)
             
             cost = cp.sum_squares((A @ x) - b)
@@ -74,4 +64,4 @@ class SignedDifferencesOLS:
             
             res_norm = np.linalg.norm(A @ X_hat - b)
         
-        return Solution(sol=X_hat, res_norm=res_norm)
+        return RegSolution(sol=X_hat, res_norm=res_norm)
