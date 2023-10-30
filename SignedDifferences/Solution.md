@@ -29,3 +29,18 @@ A careful observation of the pattern of $H$ shows how to construct it from $D$. 
 
 ## Solving The Problem
 Once $A$ and $H$ are computed, we can simply compute $\hat{X}$ by solving the Non-Negative Least Squares problem. A number of implementations are available. We offer a solver based on a number of different libraries -- namely `CVXPY`, `scipy` and `scikit-learn`. The solutions offered by the last two seem to be identical, but `CVXPY` yields superior results in terms of residual errors. One can also regularize the problem in an effort to obtain better solutions.
+
+## Implementation Details and Experiment Design
+We implemented a function `half_vectorize` to half-vectorize a given square matrix with the option of either vectorizing the upper half or the lower half of the matrix, including
+or excluding the diagonal of the matrix. This function is used to vectorize the matrix $D$ into $H$.
+
+We also implemented a function `diff_matrix` which computes the skew-symmetric matrix of differences $(X_i - X_j)$ of a vector $(X_1, \cdots, X_n)$.
+
+We then implemented a solver `SignedDifferencesOLS` as a class, with a `library` attribute specifying which of the Python libraries `CVXPY`, `scipy` or `scikit-learn` will be employed as
+a source for the Non-Negative Least Squares solver that is used to produce the solution $\hat{X}$. This class contains a method for generating data, a method constructing the design matrix $A$, and a method for solving the problem, given a source Python library.
+
+The data generation method of the `SignedDifferencesOLS` class is built with two optional arguments:
+- `positive`, allowing the user to restrict the vector $X$ we seek to estimate to consist of only positive numbers between $0$ and $1$.
+- `noise`, allowing the user to perturb the difference matrix $D$ of $X$ by a factor of $10^{-5}$ of a Gaussian noise vector.
+
+We experiment with this setup by using the solver on data generated as per the different combinations of positivity and noise contamination.
