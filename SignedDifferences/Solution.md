@@ -1,7 +1,7 @@
 # Solution
 
 ## Initial Observations
-Let $D = (d_{ij})$ and let $\hat{D} = (\hat{x}_i - \hat{x}_j)$. Note that both matrices are skew-symmetric by design. Therefore, their difference is skew-symmetric.
+Let $D = (d_{ij})$ and let $`\hat{D} = (\hat{x}_i - \hat{x}_j)`$. Note that both matrices are skew-symmetric by design. Therefore, their difference is skew-symmetric.
 Let $H := (d_{ij})_{i < j}$ and let $\hat{X} = (\hat{x}_i)$. 
 The skew-symmetry implies that the sum of squares from the original problem satisfies:
 ```math
