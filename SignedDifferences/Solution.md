@@ -13,7 +13,7 @@ where $\left\lVert \cdot \right\rVert_2$ denotes the standard $\ell_2$-norm on $
 As per our initial observations, we can now think of the initial problem as a least-squares problem, subject to the constraint $\hat{x}_i \geq 0$ for all $i = 1, \cdots, n$, with design
 matrix $A$ and target matrix $H$.
 
-## Calculating The Design Matrix $A$
+## Calculating The Design Matrix $$A$$
 Note that the design matrix $A$ is of dimensions $n(n-1)/2 \times n$. We can easily infer the structure of this matrix. Indeed, this matrix transforms the vector
 $$(\hat{x}_1, \cdots, \hat{x}_n)$$
 to the vector of differences
