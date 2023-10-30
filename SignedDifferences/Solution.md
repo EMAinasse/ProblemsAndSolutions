@@ -28,7 +28,7 @@ The target matrix $H$ is simply the half-vectorization of the original matrix $D
 A careful observation of the pattern of $H$ shows how to construct it from $D$. Indeed, it suffices to see that its entries consist of the entries $d_{i, i+k}$ where $k = 1, \cdots, n-i-1$, with $i = 1, \cdots, n$.
 
 ## Solving The Problem
-Once $A$ and $H$ are computed, we can simply compute $\hat{X}$ by solving the Non-Negative Least Squares problem. A number of implementations are available. We offer a solver based on a number of different libraries -- namely `CVXPY`, `scipy` and `scikit-learn`. The solutions offered by the last two seem to be identical, but `CVXPY` yields superior results in terms of residual errors. One can also regularize the problem in an effort to obtain better solutions.
+Once $A$ and $H$ are computed, we can simply compute $\hat{X}$ by solving the Non-Negative Least Squares problem. A number of implementations are available. We offer a solver based on a number of different libraries -- namely `CVXPY`, `scipy` and `scikit-learn`. The solutions offered by the last two seem to be identical, but `CVXPY` yields superior results in terms of residual errors.
 
 ## Implementation Details and Experiment Design
 We implemented a function `half_vectorize` to half-vectorize a given square matrix with the option of either vectorizing the upper half or the lower half of the matrix, including
