@@ -58,6 +58,18 @@ def half_vectorize(matrix : np.ndarray, triangular : str = 'upper', diag : bool 
     return matrix_vec
 
 def diff_matrix(X : np.array) -> np.ndarray:
+    """A function to compute the matrix of differences X[i] - X[j] of a vector X.
+    
+    Parameter
+    ---------
+    - X: np.array
+        The vector for which we compute the difference matrix.
+
+    Returns
+    -------
+    - D: np.ndarray
+        The matrix of differences X[i] - X[j] of the vector X.
+    """
     n = len(X)
     
     D = np.zeros((n, n))
